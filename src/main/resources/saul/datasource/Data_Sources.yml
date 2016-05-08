@@ -1,0 +1,16 @@
+
+DataSources:
+  dataSource:
+    -
+      name            : SQLITE_TEST
+      username        :
+      password        :
+      url             : jdbc:sqlite:C:/tmp/TEST.db
+      driverClassName : org.sqlite.JDBC
+    -
+      name            : DUMMY
+      username        : a
+      password        : b
+      url             : c
+      driverClassName : d
+
