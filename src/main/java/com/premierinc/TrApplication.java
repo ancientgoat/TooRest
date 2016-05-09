@@ -10,10 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TrApplication {
 	public static void main(String[] args) {
-
 		TrResetCache.readAllDefinitions();
-
-
 		SpringApplication.run(TrApplication.class, args);
 	}
 }
