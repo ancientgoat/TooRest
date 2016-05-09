@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,9 @@ public class TrController {
 		this.trService = inService;
 	}
 
+	/**
+	 *
+	 */
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity getSomethingOrOther(@PathVariable("name") String inDataDefinitionName) {
 
@@ -37,6 +41,27 @@ public class TrController {
 
 		try {
 			map = trService.getSomeData(inDataDefinitionName);
+			return new ResponseEntity(map, OK);
+		} catch (TrNotFoundException e) {
+			System.out.println(ExceptionHelper.toString(e));
+			return new ResponseEntity(e.toString(), NOT_FOUND);
+		} catch (Exception e) {
+			System.out.println(ExceptionHelper.toString(e));
+			return new ResponseEntity(e.toString(), INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	/**
+	 *
+	 */
+	@RequestMapping(value = "/{name}", method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity saveSomethingOrOther(@PathVariable("name") String inDataDefinitionName,
+			@RequestBody Map<String, Object> inMap) {
+
+		List<Map<String, Object>> map = null;
+
+		try {
+			map = trService.saveSomeData(inDataDefinitionName, inMap);
 			return new ResponseEntity(map, OK);
 		} catch (TrNotFoundException e) {
 			System.out.println(ExceptionHelper.toString(e));

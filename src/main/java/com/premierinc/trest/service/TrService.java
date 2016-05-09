@@ -32,6 +32,14 @@ public class TrService {
 		return list;
 	}
 
+
+	/**
+	 *
+	 */
+	public List<Map<String, Object>> saveSomeData(final String inDataDefinitionName, final Map<String, Object> inMap) {
+		return null;
+	}
+
 	/**
 	 *
 	 */
@@ -46,7 +54,8 @@ public class TrService {
 		ResultSet resultSet = null;
 
 		try {
-			connection = saulDataSource.getDataSource().getConnection();
+			connection = saulDataSource.getDataSource()
+					.getConnection();
 			String sql = dataDefinition.getSql();
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
